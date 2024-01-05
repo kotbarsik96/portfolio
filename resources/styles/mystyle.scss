@@ -1,0 +1,288 @@
+.hidden-link {
+    display: none;
+}
+
+/* <ADD>=========================================================================================== */
+.add {
+    margin-top: 60px;
+
+    &__inputs-section {
+        margin-bottom: 30px;
+        max-width: 700px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__load-media {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    &__load-media-item {
+        &--mobile {
+            .load-media__container {
+                width: 211px;
+                height: 393px;
+            }
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin: 60px auto 0 auto;
+
+        .button {
+            margin: 10px;
+        }
+    }
+
+    @media (max-width: 1109px) {
+        &__load-media {
+            justify-content: center;
+        }
+    }
+}
+
+/* <ADD>=========================================================================================== */
+
+/* <LOAD-MEDIA>==================================================================================== */
+.load-media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__title {
+        cursor: pointer;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 34px;
+        position: relative;
+        width: 100%;
+        padding-right: 30px;
+    }
+
+    &__container {
+        cursor: pointer;
+        width: 700px;
+        height: 393px;
+        background-color: var(--dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: background-color .3s;
+
+        &--loaded {
+            video {
+                cursor: default;
+            }
+
+            background-color: transparent;
+        }
+
+        svg {
+            width: 70px;
+            height: 70px;
+            color: var(--dark_2);
+        }
+
+        img,
+        video,
+        picture {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    &__cancel {
+        position: absolute;
+        right: 0;
+
+        svg {
+            color: var(--text_color);
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    input {
+        display: none;
+    }
+
+    .errors-list {
+        margin-top: 10px;
+        align-self: flex-start;
+    }
+
+    @media (max-width: 739px) {
+        &__container {
+            width: calc(100vw - 40px);
+            height: calc((100vw - 40px) / 1.78);
+        }
+    }
+}
+
+/* <LOAD-MEDIA>==================================================================================== */
+
+/* <EDIT-TAXONOMY>================================================================================= */
+.edit-taxonomy {
+
+    &__search-container {
+        margin-bottom: 20px;
+    }
+
+    &__new-input {
+        margin-bottom: 60px;
+
+        .text-input {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__list-item {
+        font-size: 27px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        margin-bottom: 30px;
+        overflow: hidden;
+    }
+
+    &__list-value {
+        margin: 10px 15px 10px 0;
+
+        input {
+            min-width: 16px;
+            background-color: transparent;
+            color: inherit;
+        }
+    }
+
+    &__button {
+        margin-right: 15px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 28px;
+        height: 28px;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &__list-edit,
+    &__list-back {
+        svg {
+            color: var(--color_2);
+        }
+    }
+
+    &__list-remove {
+        svg {
+            color: var(--cancel_color);
+        }
+    }
+
+    &__list-turn-back {
+        &::before {
+            color: var(--color_2);
+        }
+    }
+}
+
+/* <EDIT-TAXONOMY>================================================================================= */
+
+/* <EDITABLE>====================================================================================== */
+.editable {
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+/* <EDITABLE>====================================================================================== */
+
+/* <QR-CODE>======================================================================================= */
+.show-qr {
+    width: 100%;
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 400px;
+        height: 400px;
+    }
+
+    @media (max-width: 459px) {
+        svg {
+            width: calc(100vw - 40px);
+            height: calc(100vw - 40px);
+        }
+    }
+}
+
+/* <QR-CODE>======================================================================================= */
+
+/* <LOADING-SCALE>================================================================================= */
+.loading-scale {
+    --border_radius: 20px;
+
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    height: 20px;
+    background-color: var(--dark);
+    border-radius: var(--border_radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__progressbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 50%;
+        border-radius: var(--border_radius);
+        background-color: var(--color_2);
+        transition: width .3s;
+        z-index: 5;
+    }
+
+    &__percentage {
+        font-weight: 500;
+        position: relative;
+        font-size: 16px;
+        color: #000;
+        z-index: 10;
+    }
+}
+
+/* <LOADING-SCALE>================================================================================= */
+
+/* <ERRORS>======================================================================================== */
+.errors-list {
+    &__item {
+        font-size: 18px;
+        line-height: 21px;
+        margin-bottom: 10px;
+        color: var(--error_color);
+        font-weight: 500;
+    }
+}
+
+/* <ERRORS>======================================================================================== */
