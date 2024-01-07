@@ -36,7 +36,7 @@ export const useModalsStore = defineStore('modals', {
             }
         },
         removeMedia() {
-            this.mediaModal.parent.append(this.mediaModal.el)
+            this.mediaModal?.parent.append(this.mediaModal.el)
             this.mediaModal = null
         },
         remove(id) {

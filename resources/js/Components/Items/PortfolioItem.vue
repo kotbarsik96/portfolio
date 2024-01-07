@@ -2,15 +2,15 @@
     <li class="portfolio-item" :class="{ '__shown-skills': isShownSkills }" ref="el">
         <div class="portfolio-item__buttons">
             <button v-if="data.image_desktop" class="portfolio-item__button"
-                :class="{ '__active': imageType === 'desktop' }" type="button" @click="changeImage('desktop')">
+                :class="{ '__active': imageType === 'desktop' }" type="button" aria-label="Десктоп версия" @click="changeImage('desktop')">
                 <DesktopIcon />
             </button>
             <button v-if="slicedSkillsPages.length > 0" class="portfolio-item__button"
-                :class="{ '__active': isShownSkills }" type="button" @click="toggleLinks">
+                :class="{ '__active': isShownSkills }" type="button" aria-label="Дополнительно" @click="toggleLinks">
                 <QuestionMarkIcon />
             </button>
             <button v-if="data.image_mobile" class="portfolio-item__button" :class="{ '__active': imageType === 'mobile' }"
-                type="button" @click="changeImage('mobile')">
+                type="button" aria-label="Мобильная версия" @click="changeImage('mobile')">
                 <MobileIcon />
             </button>
             <Link v-if="isMe" :href="`/me/work/${data.id}`" class="portfolio-item__button"
@@ -26,19 +26,19 @@
                     <ol class="portfolio-item__skills-list" v-html="currentShownSkills" ref="skillsList"></ol>
                 </div>
                 <div v-if="slicedSkillsPages.length > 1" class="portfolio-item__skills-pagination">
-                    <button class="portfolio-item__skills-prev" type="button" @click="skillsPageNumber--"
+                    <button class="portfolio-item__skills-prev" type="button" aria-label="Листать назад" @click="skillsPageNumber--"
                         :disabled="isFirstSkillsPage">
                         <ChevronRightIcon />
                     </button>
                     <span>|</span>
                     <button class="portfolio-item__skills-next" type="button" @click="skillsPageNumber++"
-                        :disabled="isLastSkillsPage">
+                        :disabled="isLastSkillsPage" aria-label="Листать далее">
                         <ChevronRightIcon />
                     </button>
                 </div>
             </div>
             <div class="portfolio-item__image" ref="imageContainer">
-                <ImagePicture :path="imageUrl" ref="image" />
+                <ImagePicture :path="imageUrl" ref="image" :alt="data.name" />
             </div>
             <div class="portfolio-item__folder-front" :style="{ backgroundImage: folderBackgroundFront }">
             </div>

@@ -1,13 +1,13 @@
 <template>
-    <div class="video-player-container" ref="el">
+    <div class="video-player-container" ref="el" @click="onFirstOfDoubleClick">
         <div class="video-player" :class="{ 'is-playing': isPlaying }">
             <div class="video-player__controls" :style="{ backgroundColor: controlsBackgroundColor }"
                 @click="onControlsClick">
                 <Transition name="fade-in">
-                    <button v-if="isPlaying" class="video-player__pause-button" type="button">
+                    <button v-if="isPlaying" class="video-player__pause-button" type="button" aria-label="Пауза">
                         <PauseIcon></PauseIcon>
                     </button>
-                    <button v-else class="video-player__play-button" type="button">
+                    <button v-else class="video-player__play-button" type="button" aria-label="Воспроизвести">
                         <PlayVideoIcon></PlayVideoIcon>
                     </button>
                 </Transition>
@@ -22,7 +22,7 @@
                                 {{ durationTime }}
                             </span>
                         </div>
-                        <button class="video-player__expand" @click="expandOrShrink">
+                        <button class="video-player__expand" @click="expandOrShrink" aria-label="На весь экран">
                             <ExpandIcon></ExpandIcon>
                         </button>
                     </div>
@@ -204,6 +204,19 @@ function expandOrShrink() {
         modalsStore.addMedia(ctx)
     else
         modalsStore.removeMedia()
+}
+
+function onFirstOfDoubleClick(event) {
+    el.value.addEventListener('pointerdown', onDoublePointerDown)
+
+    setTimeout(() => {
+        el.value.removeEventListener('pointerdown', onDoublePointerDown)
+    }, 250);
+
+    function onDoublePointerDown() {
+        el.value.removeEventListener('pointerdown', onDoublePointerDown)
+        expandOrShrink()
+    }
 }
 
 onMounted(() => {

@@ -2,7 +2,7 @@
     <header class="header" :class="{ __scrolled: isScrolled }" ref="rootElem">
         <div class="header__container" ref="headerContainer">
             <nav class="header__nav">
-                <button class="header__nav-button" :class="{ '__active': isNavMenuOpened }" @click="toggleNavMenu">
+                <button class="header__nav-button" :class="{ '__active': isNavMenuOpened }" @click="toggleNavMenu" aria-label="Меню">
                     <span class="header__nav-button-item"></span>
                     <span class="header__nav-button-item"></span>
                     <span class="header__nav-button-item"></span>

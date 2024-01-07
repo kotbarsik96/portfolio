@@ -5,8 +5,6 @@ import Layout from '../Layout/Layout.vue'
 const props = defineProps({
     code: [String, Object],
 })
-
-console.log(props.code);
 </script>
 
 <template>

@@ -2,15 +2,15 @@
     <li class="skill-item" :class="{ '__shown-links': isShownLinks }" ref="el">
         <div class="skill-item__buttons">
             <button v-if="data.image_path" class="skill-item__button" :class="{ '__active': mediaType === 'image' }"
-                type="button" @click="changeMedia('image')">
+                type="button" aria-label="Изображение" @click="changeMedia('image')">
                 <ImageIcon />
             </button>
             <button v-if="data.video_path" class="skill-item__button" :class="{ '__active': mediaType === 'video' }"
-                type="button" @click="changeMedia('video')">
+                type="button" aria-label="Видео" @click="changeMedia('video')">
                 <VideoIcon />
             </button>
             <button v-if="slicedLinksPages.length > 0" class="skill-item__button" :class="{ '__active': isShownLinks }"
-                type="button" @click="toggleLinks">
+                type="button" aria-label="Дополнительно" @click="toggleLinks">
                 <QuestionMarkIcon />
             </button>
             <Link v-if="isMe" :href="`/me/skill/${data.id}`" class="skill-item__button">
