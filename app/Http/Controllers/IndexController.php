@@ -26,6 +26,7 @@ class IndexController extends Controller
     {
         $works = $this->getWorksFullData(4);
         $skills = $this->getSkillsFullData(2);
+        $skillsNames = Skill::all(['name']);
 
         return Inertia::render('Home', [
             'routeName' => 'home',
@@ -36,6 +37,7 @@ class IndexController extends Controller
             'skillsCount' => Skill::all()->count(),
             'works' => $works,
             'skills' => $skills,
+            'skillsNames' => $skillsNames
         ]);
     }
 

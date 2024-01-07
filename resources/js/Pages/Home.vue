@@ -1,5 +1,5 @@
 <script setup>
-import { provide } from 'vue'
+import { provide, computed } from 'vue'
 import Layout from '../Layout/Layout.vue'
 import MyPortfolio from '../Sections/MyPortfolio.vue'
 import MyContacts from '../Sections/MyContacts.vue'
@@ -13,12 +13,16 @@ const props = defineProps({
     types: Array,
     works: Array,
     skills: Array,
+    skillsNames: Array
 })
+
+const skillsNamesList = computed(() => props.skillsNames.map(o => o.name))
 
 provide('worksCount', props.worksCount)
 provide('skillsCount', props.skillsCount)
 provide('stack', props.stack.map(o => o.name))
 provide('types', props.types.map(o => o.name))
+provide('skillsNames', skillsNamesList)
 </script>
 
 <template>

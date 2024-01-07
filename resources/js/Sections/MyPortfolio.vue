@@ -51,6 +51,7 @@ const props = defineProps({
 const types = inject('types')
 const stack = inject('stack')
 const worksCount = inject('worksCount')
+const skillsNames = inject('skillsNames')
 
 const filters = ref({})
 const loadedWorks = ref([...props.works])
@@ -77,8 +78,8 @@ const filterSections = computed(() => {
         {
             name: 'skills',
             title: 'Навыки',
-            list: props.skills.map(obj => {
-                return { title: obj.name, value: obj.name }
+            list: skillsNames.value.map(title => {
+                return { title, value: title }
             })
         }
     ]
