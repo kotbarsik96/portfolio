@@ -42,13 +42,17 @@ import TextInput from '../Components/TextInput.vue'
 import SkillItem from '../Components/Items/SkillItem.vue'
 import emptyIcon from '../../images/icons/cricket.svg'
 import axios from 'axios'
-import { ref, onBeforeUnmount, onMounted, computed, watch } from 'vue'
+import { ref, onBeforeUnmount, onMounted, computed, watch, inject } from 'vue'
 
 const props = defineProps({
     skills: Array
 })
 
+const limit = 2
 const intersection = ref(null)
+const offset = ref(limit)
+
+const skillsCount = inject('skillsCount')
 
 const search = ref('')
 const intersectionObs = new IntersectionObserver(onIntersect, {
@@ -80,10 +84,14 @@ function onIntersect(entries) {
     })
 }
 async function loadSkills() {
+    if(loadedSkills.value.length >= skillsCount)
+        return
+
     const params = {
-        limit: 2,
-        offset: loadedSkills.value.length
+        limit,
+        offset: offset.value
     }
+    offset.value += limit
     const res = await axios.get('/skills', { params })
     if (Array.isArray(res.data.list))
         loadedSkills.value.push(...res.data.list)
